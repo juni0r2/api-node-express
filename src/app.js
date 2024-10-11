@@ -38,6 +38,12 @@ api.post("/livros", (req, res) => {
     res.status(201).send("Livro cadastrado com sucesso");
 });
 
+api.put("/livros/:id", (req, res) => {
+    let indice = buscaLivro(req.params.id);
+    livros[indice].titulo = req.body.titulo;
+    res.status(200).json(livros[indice]);
+});
+
 
 
 export default api;
