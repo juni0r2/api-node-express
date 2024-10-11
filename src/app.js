@@ -14,6 +14,11 @@ const livros = [
     }
 ];
 
+function buscaLivro(id) {
+    return livros.findIndex( livro => {
+        return livro.id === Number(id);
+    });
+}
 
 api.get("/", (req, res) => {
     res.status(200).send("Curso de NodeJS");
@@ -23,10 +28,16 @@ api.get("/livros", (req, res) => {
     res.status(200).json(livros);
 });
 
+api.get("/livros/:id", (req, res) => {
+    let indice = buscaLivro(req.params.id);
+    res.status(200).json(livros[indice]);
+});
+
 api.post("/livros", (req, res) => {
     livros.push(req.body);
     res.status(201).send("Livro cadastrado com sucesso");
 });
+
 
 
 export default api;
