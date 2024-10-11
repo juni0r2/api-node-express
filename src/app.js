@@ -23,5 +23,10 @@ api.get("/livros", (req, res) => {
     res.status(200).json(livros);
 });
 
+api.post("/livros", (req, res) => {
+    livros.push(req.body);
+    res.status(201).send("Livro cadastrado com sucesso");
+});
+
 
 export default api;
