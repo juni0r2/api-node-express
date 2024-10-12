@@ -44,4 +44,10 @@ api.put("/livros/:id", (req, res) => {
     res.status(200).json(livros[indice]);
 });
 
+api.delete("/livros/:id", (req, res) => {
+    let indice = buscaLivros(req.params.id);
+    livros.splice(indice, 1);
+    res.status(200).send("Livro deletado com sucesso!");    
+});
+
 export default api;
