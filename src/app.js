@@ -1,19 +1,18 @@
 import express from "express";
-import connectaBaseMongoDB from "./config/dbConnect.js";
+import criaConexaoComMongoDB from "./config/dbConnect.js";
 
-const conexao = await connectaBaseMongoDB();
-const api = express();
-api.use(express.json());
-
-
+const conexao = await criaConexaoComMongoDB();
 
 conexao.on("error", (erro) => {
-    console.error("error de conexao", erro);
+    console.error(erro);
 });
 
 conexao.once("open", () => {
-    console.log("Conectado a base de dados do mongoDB");
+    console.log("Conexao aberta com banco de dados");
 });
+
+const api = express();
+api.use(express.json());
 
 const livros = [
     {
